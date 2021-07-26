@@ -2,9 +2,16 @@
 
 let project_form = document.getElementById('landscaper-form');
 
-project_form.addEventListener('submit', calculateResults);
+project_form.addEventListener('submit', function(e){
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('gif').style.display = 'block';
 
-function calculateResults(e){
+    setTimeout(calculateResults, 2000);
+
+    e.preventDefault();
+});
+
+function calculateResults(){
     let customer_name = document.getElementById('customer-name').value;
     let customer_email = document.getElementById('customer-email').value;
     let customer_number = document.getElementById('customer-number').value;
@@ -99,12 +106,15 @@ function calculateResults(e){
     document.getElementById('display_email').value = customer_email;
     document.getElementById('display_phone').value = customer_number;
     document.getElementById('total_estimate').value = result.toFixed(2);
+
+    document.getElementById('results').style.display = 'block';
+    document.getElementById('gif').style.display = 'none';
     
 
     console.log(project_size);
     console.log(project_package);
 
-    e.preventDefault();
+    
 
     //Calculate Results
 }
