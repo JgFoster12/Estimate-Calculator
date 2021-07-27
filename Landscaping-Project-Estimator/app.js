@@ -1,16 +1,19 @@
-// Variables
+//Declare form variable - user input
 
 let project_form = document.getElementById('landscaper-form');
 
+//add event listeners when form is submitted
 project_form.addEventListener('submit', function(e){
     document.getElementById('results').style.display = 'none';
     document.getElementById('gif').style.display = 'block';
-
+    
+    //delay updating DOM with user results for two seconds with loader for UX
     setTimeout(calculateResults, 2000);
 
     e.preventDefault();
 });
 
+//Calculate estimate
 function calculateResults(){
     let customer_name = document.getElementById('customer-name').value;
     let customer_email = document.getElementById('customer-email').value;
@@ -27,7 +30,7 @@ function calculateResults(){
     const platinum = .60;
     let result = 0;
 
-
+    //Townhouse combinations
     if(project_size.toLowerCase().includes('townhouse')){
         if(project_package.toLowerCase().includes('bronze')){
             result = townhouse + (townhouse * bronze);
@@ -46,6 +49,7 @@ function calculateResults(){
             console.log(result);
         }
     }
+    //Small house combinations
     else if(project_size.toLowerCase().includes('small')){
         if(project_package.toLowerCase().includes('bronze')){
             result = small + (small * bronze);
@@ -64,6 +68,7 @@ function calculateResults(){
             console.log(result);
         }
     }
+    //Medium House Combinations
     else if(project_size.toLowerCase().includes('medium')){
         if(project_package.toLowerCase().includes('bronze')){
             result = medium + (medium * bronze);
@@ -82,6 +87,7 @@ function calculateResults(){
             console.log(result);
         }
     }
+    //Large House Combinations
     else if(project_size.toLowerCase().includes('large')){
         if(project_package.toLowerCase().includes('bronze')){
             result = large + (large * bronze);
@@ -101,7 +107,7 @@ function calculateResults(){
         }
     }
 
-    
+    //display results in DOM
     document.getElementById('display_name').value = customer_name;
     document.getElementById('display_email').value = customer_email;
     document.getElementById('display_phone').value = customer_number;
@@ -122,12 +128,12 @@ function calculateResults(){
 function displayData(){
 
 }
-
+//Returns size of house
 function getSizeValue(){
     let value = document.getElementById('size').value;
     return value;
 }
-
+//Returns type of service
 function getProjectValue(){
     let value = document.getElementById('service-package').value;
     return value;
